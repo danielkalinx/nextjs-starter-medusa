@@ -1,7 +1,8 @@
 import { HttpTypes } from "@medusajs/types"
-import { Container } from "@medusajs/ui"
+import { Container } from "@modules/common/components/container"
 import Checkbox from "@modules/common/components/checkbox"
 import Input from "@modules/common/components/input"
+import { Label } from "@modules/common/components/label"
 import { mapKeys } from "lodash"
 import React, { useEffect, useMemo, useState } from "react"
 import AddressSelect from "../address-select"
@@ -111,59 +112,77 @@ const ShippingAddress = ({
         </Container>
       )}
       <div className="grid grid-cols-2 gap-4">
-        <Input
-          label="First name"
-          name="shipping_address.first_name"
-          autoComplete="given-name"
-          value={formData["shipping_address.first_name"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-first-name-input"
-        />
-        <Input
-          label="Last name"
-          name="shipping_address.last_name"
-          autoComplete="family-name"
-          value={formData["shipping_address.last_name"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-last-name-input"
-        />
-        <Input
-          label="Address"
-          name="shipping_address.address_1"
-          autoComplete="address-line1"
-          value={formData["shipping_address.address_1"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-address-input"
-        />
-        <Input
-          label="Company"
-          name="shipping_address.company"
-          value={formData["shipping_address.company"]}
-          onChange={handleChange}
-          autoComplete="organization"
-          data-testid="shipping-company-input"
-        />
-        <Input
-          label="Postal code"
-          name="shipping_address.postal_code"
-          autoComplete="postal-code"
-          value={formData["shipping_address.postal_code"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-postal-code-input"
-        />
-        <Input
-          label="City"
-          name="shipping_address.city"
-          autoComplete="address-level2"
-          value={formData["shipping_address.city"]}
-          onChange={handleChange}
-          required
-          data-testid="shipping-city-input"
-        />
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.first_name">First name</Label>
+          <Input
+            id="shipping_address.first_name"
+            name="shipping_address.first_name"
+            autoComplete="given-name"
+            value={formData["shipping_address.first_name"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-first-name-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.last_name">Last name</Label>
+          <Input
+            id="shipping_address.last_name"
+            name="shipping_address.last_name"
+            autoComplete="family-name"
+            value={formData["shipping_address.last_name"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-last-name-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.address_1">Address</Label>
+          <Input
+            id="shipping_address.address_1"
+            name="shipping_address.address_1"
+            autoComplete="address-line1"
+            value={formData["shipping_address.address_1"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-address-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.company">Company</Label>
+          <Input
+            id="shipping_address.company"
+            name="shipping_address.company"
+            value={formData["shipping_address.company"]}
+            onChange={handleChange}
+            autoComplete="organization"
+            data-testid="shipping-company-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.postal_code">Postal code</Label>
+          <Input
+            id="shipping_address.postal_code"
+            name="shipping_address.postal_code"
+            autoComplete="postal-code"
+            value={formData["shipping_address.postal_code"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-postal-code-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.city">City</Label>
+          <Input
+            id="shipping_address.city"
+            name="shipping_address.city"
+            autoComplete="address-level2"
+            value={formData["shipping_address.city"]}
+            onChange={handleChange}
+            required
+            data-testid="shipping-city-input"
+          />
+        </div>
         <CountrySelect
           name="shipping_address.country_code"
           autoComplete="country"
@@ -173,44 +192,56 @@ const ShippingAddress = ({
           required
           data-testid="shipping-country-select"
         />
-        <Input
-          label="State / Province"
-          name="shipping_address.province"
-          autoComplete="address-level1"
-          value={formData["shipping_address.province"]}
-          onChange={handleChange}
-          data-testid="shipping-province-input"
-        />
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.province">State / Province</Label>
+          <Input
+            id="shipping_address.province"
+            name="shipping_address.province"
+            autoComplete="address-level1"
+            value={formData["shipping_address.province"]}
+            onChange={handleChange}
+            data-testid="shipping-province-input"
+          />
+        </div>
       </div>
       <div className="my-8">
-        <Checkbox
-          label="Billing address same as shipping address"
-          name="same_as_billing"
-          checked={checked}
-          onChange={onChange}
-          data-testid="billing-address-checkbox"
-        />
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="same_as_billing"
+            name="same_as_billing"
+            checked={checked}
+            onChange={onChange}
+            data-testid="billing-address-checkbox"
+          />
+          <Label htmlFor="same_as_billing">Billing address same as shipping address</Label>
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          title="Enter a valid email address."
-          autoComplete="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          data-testid="shipping-email-input"
-        />
-        <Input
-          label="Phone"
-          name="shipping_address.phone"
-          autoComplete="tel"
-          value={formData["shipping_address.phone"]}
-          onChange={handleChange}
-          data-testid="shipping-phone-input"
-        />
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            title="Enter a valid email address."
+            autoComplete="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            data-testid="shipping-email-input"
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Label htmlFor="shipping_address.phone">Phone</Label>
+          <Input
+            id="shipping_address.phone"
+            name="shipping_address.phone"
+            autoComplete="tel"
+            value={formData["shipping_address.phone"]}
+            onChange={handleChange}
+            data-testid="shipping-phone-input"
+          />
+        </div>
       </div>
     </>
   )

@@ -1,9 +1,11 @@
-import { Button, Heading, Text } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const SignInPrompt = () => {
   return (
-    <div className="bg-white flex items-center justify-between">
+    <div className="bg-card flex items-center justify-between">
       <div>
         <Heading level="h2" className="txt-xlarge">
           Already have an account?

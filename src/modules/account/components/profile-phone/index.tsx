@@ -3,6 +3,7 @@
 import React, { useEffect, useActionState } from "react";
 
 import Input from "@modules/common/components/input"
+import { Label } from "@modules/common/components/label"
 
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
@@ -56,15 +57,18 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
         data-testid="account-phone-editor"
       >
         <div className="grid grid-cols-1 gap-y-2">
-          <Input
-            label="Phone"
-            name="phone"
-            type="phone"
-            autoComplete="phone"
-            required
-            defaultValue={customer.phone ?? ""}
-            data-testid="phone-input"
-          />
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="phone">Phone</Label>
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              required
+              defaultValue={customer.phone ?? ""}
+              data-testid="phone-input"
+            />
+          </div>
         </div>
       </AccountInfo>
     </form>

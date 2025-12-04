@@ -1,43 +1,22 @@
-import { Checkbox, Label } from "@medusajs/ui"
+import { clx } from "@lib/util/clx"
 import React from "react"
 
-type CheckboxProps = {
-  checked?: boolean
-  onChange?: () => void
-  label: string
-  name?: string
-  'data-testid'?: string
-}
-
-const CheckboxWithLabel: React.FC<CheckboxProps> = ({
-  checked = true,
-  onChange,
-  label,
-  name,
-  'data-testid': dataTestId
-}) => {
-  return (
-    <div className="flex items-center space-x-2 ">
-      <Checkbox
-        className="text-base-regular flex items-center gap-x-2"
-        id="checkbox"
-        role="checkbox"
-        type="button"
-        checked={checked}
-        aria-checked={checked}
-        onClick={onChange}
-        name={name}
-        data-testid={dataTestId}
+const Checkbox = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  ({ className, ...props }, ref) => {
+    return (
+      <input
+        type="checkbox"
+        className={clx(
+          "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground accent-primary",
+          className
+        )}
+        ref={ref}
+        {...props}
       />
-      <Label
-        htmlFor="checkbox"
-        className="!transform-none !txt-medium"
-        size="large"
-      >
-        {label}
-      </Label>
-    </div>
-  )
-}
+    )
+  }
+)
+Checkbox.displayName = "Checkbox"
 
-export default CheckboxWithLabel
+export { Checkbox }
+export default Checkbox

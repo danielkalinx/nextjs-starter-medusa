@@ -1,4 +1,4 @@
-import { Button } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
 import { useMemo } from "react"
 
 import Thumbnail from "@modules/products/components/thumbnail"
@@ -24,7 +24,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
   }, [order])
 
   return (
-    <div className="bg-white flex flex-col" data-testid="order-card">
+    <div className="bg-card flex flex-col" data-testid="order-card">
       <div className="uppercase text-large-semi mb-1">
         #<span data-testid="order-display-id">{order.display_id}</span>
       </div>

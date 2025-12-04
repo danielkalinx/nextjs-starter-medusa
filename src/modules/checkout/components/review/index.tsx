@@ -1,6 +1,8 @@
 "use client"
 
-import { Heading, Text, clx } from "@medusajs/ui"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
+import { clx } from "@lib/util/clx"
 
 import PaymentButton from "../payment-button"
 import { useSearchParams } from "next/navigation"
@@ -19,7 +21,7 @@ const Review = ({ cart }: { cart: any }) => {
     (cart.payment_collection || paidByGiftcard)
 
   return (
-    <div className="bg-white">
+    <div className="bg-card">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"

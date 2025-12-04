@@ -1,5 +1,7 @@
 import { EllipseMiniSolid } from "@medusajs/icons"
-import { Label, RadioGroup, Text, clx } from "@medusajs/ui"
+import { Label } from "@modules/common/components/label"
+import { Text } from "@modules/common/components/text"
+import { clx } from "@lib/util/clx"
 
 type FilterRadioGroupProps = {
   title: string
@@ -22,7 +24,7 @@ const FilterRadioGroup = ({
   return (
     <div className="flex gap-x-3 flex-col gap-y-3">
       <Text className="txt-compact-small-plus text-ui-fg-muted">{title}</Text>
-      <RadioGroup data-testid={dataTestId} onValueChange={handleChange}>
+      <div data-testid={dataTestId}>
         {items?.map((i) => (
           <div
             key={i.value}
@@ -31,8 +33,10 @@ const FilterRadioGroup = ({
             })}
           >
             {i.value === value && <EllipseMiniSolid />}
-            <RadioGroup.Item
+            <input
+              type="radio"
               checked={i.value === value}
+              onChange={() => handleChange(i.value)}
               className="hidden peer"
               id={i.value}
               value={i.value}
@@ -52,7 +56,7 @@ const FilterRadioGroup = ({
             </Label>
           </div>
         ))}
-      </RadioGroup>
+      </div>
     </div>
   )
 }

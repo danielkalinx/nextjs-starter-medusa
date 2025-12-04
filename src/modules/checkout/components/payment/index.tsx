@@ -4,7 +4,11 @@ import { RadioGroup } from "@headlessui/react"
 import { isStripeLike, paymentInfoMap } from "@lib/constants"
 import { initiatePaymentSession } from "@lib/data/cart"
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons"
-import { Button, Container, Heading, Text, clx } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
+import { Container } from "@modules/common/components/container"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
+import { clx } from "@lib/util/clx"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import PaymentContainer, {
   StripeCardContainer,
@@ -105,7 +109,7 @@ const Payment = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <div className="bg-card">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"

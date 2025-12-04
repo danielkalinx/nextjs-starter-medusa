@@ -2,7 +2,11 @@
 
 import React, { useEffect, useState, useActionState } from "react"
 import { PencilSquare as Edit, Trash } from "@medusajs/icons"
-import { Button, Heading, Text, clx } from "@medusajs/ui"
+import { clx } from "@lib/util/clx"
+import { Button } from "@modules/common/components/button"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
+import { Label } from "@modules/common/components/label"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
 import CountrySelect from "@modules/checkout/components/country-select"
@@ -130,70 +134,94 @@ const EditAddress: React.FC<EditAddressProps> = ({
           <Modal.Body>
             <div className="grid grid-cols-1 gap-y-2">
               <div className="grid grid-cols-2 gap-x-2">
+                <div className="flex flex-col gap-y-2">
+                  <Label htmlFor="first_name">First name</Label>
+                  <Input
+                    id="first_name"
+                    name="first_name"
+                    required
+                    autoComplete="given-name"
+                    defaultValue={address.first_name || undefined}
+                    data-testid="first-name-input"
+                  />
+                </div>
+                <div className="flex flex-col gap-y-2">
+                  <Label htmlFor="last_name">Last name</Label>
+                  <Input
+                    id="last_name"
+                    name="last_name"
+                    required
+                    autoComplete="family-name"
+                    defaultValue={address.last_name || undefined}
+                    data-testid="last-name-input"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <Label htmlFor="company">Company</Label>
                 <Input
-                  label="First name"
-                  name="first_name"
-                  required
-                  autoComplete="given-name"
-                  defaultValue={address.first_name || undefined}
-                  data-testid="first-name-input"
-                />
-                <Input
-                  label="Last name"
-                  name="last_name"
-                  required
-                  autoComplete="family-name"
-                  defaultValue={address.last_name || undefined}
-                  data-testid="last-name-input"
+                  id="company"
+                  name="company"
+                  autoComplete="organization"
+                  defaultValue={address.company || undefined}
+                  data-testid="company-input"
                 />
               </div>
-              <Input
-                label="Company"
-                name="company"
-                autoComplete="organization"
-                defaultValue={address.company || undefined}
-                data-testid="company-input"
-              />
-              <Input
-                label="Address"
-                name="address_1"
-                required
-                autoComplete="address-line1"
-                defaultValue={address.address_1 || undefined}
-                data-testid="address-1-input"
-              />
-              <Input
-                label="Apartment, suite, etc."
-                name="address_2"
-                autoComplete="address-line2"
-                defaultValue={address.address_2 || undefined}
-                data-testid="address-2-input"
-              />
+              <div className="flex flex-col gap-y-2">
+                <Label htmlFor="address_1">Address</Label>
+                <Input
+                  id="address_1"
+                  name="address_1"
+                  required
+                  autoComplete="address-line1"
+                  defaultValue={address.address_1 || undefined}
+                  data-testid="address-1-input"
+                />
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <Label htmlFor="address_2">Apartment, suite, etc.</Label>
+                <Input
+                  id="address_2"
+                  name="address_2"
+                  autoComplete="address-line2"
+                  defaultValue={address.address_2 || undefined}
+                  data-testid="address-2-input"
+                />
+              </div>
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
+                <div className="flex flex-col gap-y-2">
+                  <Label htmlFor="postal_code">Postal code</Label>
+                  <Input
+                    id="postal_code"
+                    name="postal_code"
+                    required
+                    autoComplete="postal-code"
+                    defaultValue={address.postal_code || undefined}
+                    data-testid="postal-code-input"
+                  />
+                </div>
+                <div className="flex flex-col gap-y-2">
+                  <Label htmlFor="city">City</Label>
+                  <Input
+                    id="city"
+                    name="city"
+                    required
+                    autoComplete="locality"
+                    defaultValue={address.city || undefined}
+                    data-testid="city-input"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <Label htmlFor="province">Province / State</Label>
                 <Input
-                  label="Postal code"
-                  name="postal_code"
-                  required
-                  autoComplete="postal-code"
-                  defaultValue={address.postal_code || undefined}
-                  data-testid="postal-code-input"
-                />
-                <Input
-                  label="City"
-                  name="city"
-                  required
-                  autoComplete="locality"
-                  defaultValue={address.city || undefined}
-                  data-testid="city-input"
+                  id="province"
+                  name="province"
+                  autoComplete="address-level1"
+                  defaultValue={address.province || undefined}
+                  data-testid="state-input"
                 />
               </div>
-              <Input
-                label="Province / State"
-                name="province"
-                autoComplete="address-level1"
-                defaultValue={address.province || undefined}
-                data-testid="state-input"
-              />
               <CountrySelect
                 name="country_code"
                 region={region}
@@ -202,13 +230,16 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 defaultValue={address.country_code || undefined}
                 data-testid="country-select"
               />
-              <Input
-                label="Phone"
-                name="phone"
-                autoComplete="phone"
-                defaultValue={address.phone || undefined}
-                data-testid="phone-input"
-              />
+              <div className="flex flex-col gap-y-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  autoComplete="phone"
+                  defaultValue={address.phone || undefined}
+                  data-testid="phone-input"
+                />
+              </div>
             </div>
             {formState.error && (
               <div className="text-rose-500 text-small-regular py-2">

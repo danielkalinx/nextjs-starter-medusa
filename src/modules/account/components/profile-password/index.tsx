@@ -2,9 +2,10 @@
 
 import React, { useEffect, useActionState } from "react"
 import Input from "@modules/common/components/input"
+import { Label } from "@modules/common/components/label"
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
-import { toast } from "@medusajs/ui"
+import { clx } from "@lib/util/clx"
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
@@ -15,7 +16,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
 
   // TODO: Add support for password updates
   const updatePassword = async () => {
-    toast.info("Password update is not implemented")
+    alert("Password update is not implemented")
   }
 
   const clearState = () => {
@@ -40,27 +41,36 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
         data-testid="account-password-editor"
       >
         <div className="grid grid-cols-2 gap-4">
-          <Input
-            label="Old password"
-            name="old_password"
-            required
-            type="password"
-            data-testid="old-password-input"
-          />
-          <Input
-            label="New password"
-            type="password"
-            name="new_password"
-            required
-            data-testid="new-password-input"
-          />
-          <Input
-            label="Confirm password"
-            type="password"
-            name="confirm_password"
-            required
-            data-testid="confirm-password-input"
-          />
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="old_password">Old password</Label>
+            <Input
+              id="old_password"
+              name="old_password"
+              required
+              type="password"
+              data-testid="old-password-input"
+            />
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="new_password">New password</Label>
+            <Input
+              id="new_password"
+              type="password"
+              name="new_password"
+              required
+              data-testid="new-password-input"
+            />
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="confirm_password">Confirm password</Label>
+            <Input
+              id="confirm_password"
+              type="password"
+              name="confirm_password"
+              required
+              data-testid="confirm-password-input"
+            />
+          </div>
         </div>
       </AccountInfo>
     </form>

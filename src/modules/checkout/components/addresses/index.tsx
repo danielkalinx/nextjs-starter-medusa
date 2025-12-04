@@ -4,7 +4,9 @@ import { setAddresses } from "@lib/data/cart"
 import compareAddresses from "@lib/util/compare-addresses"
 import { CheckCircleSolid } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
-import { Heading, Text, useToggleState } from "@medusajs/ui"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
+import { useToggleState } from "@medusajs/ui"
 import Divider from "@modules/common/components/divider"
 import Spinner from "@modules/common/icons/spinner"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
@@ -40,7 +42,7 @@ const Addresses = ({
   const [message, formAction] = useActionState(setAddresses, null)
 
   return (
-    <div className="bg-white">
+    <div className="bg-card">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"

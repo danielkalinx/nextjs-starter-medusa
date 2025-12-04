@@ -2,7 +2,8 @@
 
 import repeat from "@lib/util/repeat"
 import { HttpTypes } from "@medusajs/types"
-import { Table, clx } from "@medusajs/ui"
+import { Table, TableBody } from "@modules/common/components/table"
+import { clx } from "@lib/util/clx"
 
 import Item from "@modules/cart/components/item"
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
@@ -23,7 +24,7 @@ const ItemsPreviewTemplate = ({ cart }: ItemsTemplateProps) => {
       })}
     >
       <Table>
-        <Table.Body data-testid="items-table">
+        <TableBody data-testid="items-table">
           {items
             ? items
                 .sort((a, b) => {
@@ -42,7 +43,7 @@ const ItemsPreviewTemplate = ({ cart }: ItemsTemplateProps) => {
             : repeat(5).map((i) => {
                 return <SkeletonLineItem key={i} />
               })}
-        </Table.Body>
+        </TableBody>
       </Table>
     </div>
   )

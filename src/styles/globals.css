@@ -2,6 +2,79 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  /* --- 1. Semantic Tokens (Shadcn Standard) --- */
+  --background: 0 0% 2%; /* #050505 */
+  --foreground: 0 0% 100%; /* #ffffff */
+
+  --card: 0 0% 7%; /* #121212 */
+  --card-foreground: 0 0% 100%;
+
+  --popover: 0 0% 7%;
+  --popover-foreground: 0 0% 100%;
+
+  --primary: 0 0% 100%; /* White */
+  --primary-foreground: 0 0% 0%; /* Black */
+
+  --secondary: 240 4% 16%; /* Zinc 800 */
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 65%;
+
+  --accent: 240 4% 16%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 0 0% 100%;
+
+  --radius: 0.5rem;
+
+  /* --- 2. The Mapping Layer (Medusa Compatibility) --- */
+  /* This connects Medusa components to our semantic tokens. */
+
+  /* Base Colors */
+  --bg-base: hsl(var(--background));
+  --fg-base: hsl(var(--foreground));
+  --bg-subtle: hsl(var(--muted));
+  --fg-subtle: hsl(var(--muted-foreground));
+
+  /* Components */
+  --bg-component: hsl(var(--card));
+  --bg-component-hover: hsl(var(--accent));
+  --bg-component-pressed: hsl(var(--accent)); /* Using accent for pressed too */
+
+  --bg-field: hsl(var(--input));
+  --bg-field-hover: hsl(var(--accent));
+
+  --border-base: hsl(var(--border));
+  --border-strong: hsl(var(--border)); /* Simplify for now */
+
+  /* Buttons */
+  /* Medusa "Inverted" (Primary) -> Our Primary */
+  --button-inverted: hsl(var(--primary));
+  --fg-on-inverted: hsl(var(--primary-foreground));
+  --button-inverted-hover: hsl(var(--primary) / 0.9);
+  --button-inverted-pressed: hsl(var(--primary) / 0.8);
+
+  /* Medusa "Neutral" (Secondary) -> Our Secondary */
+  --button-neutral: hsl(var(--secondary));
+  --button-neutral-hover: hsl(var(--accent));
+  --button-neutral-pressed: hsl(var(--accent));
+
+  /* Ensure text is readable on inputs */
+  --fg-on-color: hsl(var(--primary-foreground));
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--fg-base);
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

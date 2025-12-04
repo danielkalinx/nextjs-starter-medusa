@@ -3,6 +3,7 @@
 import React, { useEffect, useActionState } from "react";
 
 import Input from "@modules/common/components/input"
+import { Label } from "@modules/common/components/label"
 
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
@@ -56,20 +57,26 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
         data-testid="account-name-editor"
       >
         <div className="grid grid-cols-2 gap-x-4">
-          <Input
-            label="First name"
-            name="first_name"
-            required
-            defaultValue={customer.first_name ?? ""}
-            data-testid="first-name-input"
-          />
-          <Input
-            label="Last name"
-            name="last_name"
-            required
-            defaultValue={customer.last_name ?? ""}
-            data-testid="last-name-input"
-          />
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="first_name">First name</Label>
+            <Input
+              id="first_name"
+              name="first_name"
+              required
+              defaultValue={customer.first_name ?? ""}
+              data-testid="first-name-input"
+            />
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <Label htmlFor="last_name">Last name</Label>
+            <Input
+              id="last_name"
+              name="last_name"
+              required
+              defaultValue={customer.last_name ?? ""}
+              data-testid="last-name-input"
+            />
+          </div>
         </div>
       </AccountInfo>
     </form>

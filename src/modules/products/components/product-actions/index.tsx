@@ -3,7 +3,7 @@
 import { addToCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
 import { HttpTypes } from "@medusajs/types"
-import { Button } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
 import Divider from "@modules/common/components/divider"
 import OptionSelect from "@modules/products/components/product-actions/option-select"
 import { isEqual } from "lodash"
@@ -36,7 +36,17 @@ export default function ProductActions({
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const [options, setOptions] = useState<Record<string, string | undefined>>({})
+  // changed from const [options, setOptions] = useState<Record<string, string | undefined>>({}) TODO: Find out why and if this logic is still needed.
+  const [options, setOptions] = useState<Record<string, string | undefined>>(() => {
+    const variantId = searchParams.get("v_id")
+    if (variantId && product.variants) {
+      const variant = product.variants.find((v) => v.id === variantId)
+      if (variant) {
+        return optionsAsKeymap(variant.options) ?? {}
+      }
+    }
+    return {}
+  })
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
 

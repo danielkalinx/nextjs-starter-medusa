@@ -1,6 +1,7 @@
 "use client"
 
-import { Button, Heading } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
+import { Heading } from "@modules/common/components/heading"
 
 import CartTotals from "@modules/common/components/cart-totals"
 import Divider from "@modules/common/components/divider"

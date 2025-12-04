@@ -6,7 +6,10 @@ import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
 import { convertToLocale } from "@lib/util/money"
 import { CheckCircleSolid, Loader } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
-import { Button, clx, Heading, Text } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
+import { Heading } from "@modules/common/components/heading"
+import { Text } from "@modules/common/components/text"
+import { clx } from "@lib/util/clx"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import Divider from "@modules/common/components/divider"
 import MedusaRadio from "@modules/common/components/radio"
@@ -71,11 +74,11 @@ const Shipping: React.FC<ShippingProps> = ({
   const isOpen = searchParams.get("step") === "delivery"
 
   const _shippingMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type !== "pickup"
+    (sm) => (sm as any).service_zone?.fulfillment_set?.type !== "pickup"
   )
 
   const _pickupMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type === "pickup"
+    (sm) => (sm as any).service_zone?.fulfillment_set?.type === "pickup"
   )
 
   const hasPickupOptions = !!_pickupMethods?.length
@@ -149,7 +152,7 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <div className="bg-card">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
@@ -342,7 +345,7 @@ const Shipping: React.FC<ShippingProps> = ({
                               </span>
                               <span className="text-base-regular text-ui-fg-muted">
                                 {formatAddress(
-                                  option.service_zone?.fulfillment_set?.location
+                                  (option as any).service_zone?.fulfillment_set?.location
                                     ?.address
                                 )}
                               </span>

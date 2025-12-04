@@ -1,6 +1,10 @@
 "use client"
 
-import { Badge, Heading, Input, Label, Text } from "@medusajs/ui"
+import { Badge } from "@modules/common/components/badge"
+import { Heading } from "@modules/common/components/heading"
+import Input from "@modules/common/components/input"
+import { Label } from "@modules/common/components/label"
+import { Text } from "@modules/common/components/text"
 import React from "react"
 
 import { applyPromotions } from "@lib/data/cart"
@@ -56,7 +60,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   }
 
   return (
-    <div className="w-full bg-white flex flex-col">
+    <div className="w-full bg-card flex flex-col">
       <div className="txt-medium">
         <form action={(a) => addPromotionCode(a)} className="w-full mb-5">
           <Label className="flex gap-x-1 my-2 items-center">
@@ -118,8 +122,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                     <Text className="flex gap-x-1 items-baseline txt-small-plus w-4/5 pr-1">
                       <span className="truncate" data-testid="discount-code">
                         <Badge
-                          color={promotion.is_automatic ? "green" : "grey"}
-                          size="small"
+                          variant={promotion.is_automatic ? "default" : "secondary"}
                         >
                           {promotion.code}
                         </Badge>{" "}

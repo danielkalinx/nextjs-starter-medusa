@@ -1,4 +1,5 @@
-import { Text, clx } from "@medusajs/ui"
+import { Text } from "@modules/common/components/text"
+import { clx } from "@lib/util/clx"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import React from "react"
 
@@ -59,11 +60,11 @@ const Item: React.FC<AccordionItemProps> = ({
               <Text className="text-ui-fg-subtle text-sm">{title}</Text>
             </div>
             <AccordionPrimitive.Trigger>
-              {customTrigger || <MorphingTrigger />}
+              <>{customTrigger || <MorphingTrigger />}</>
             </AccordionPrimitive.Trigger>
           </div>
           {subtitle && (
-            <Text as="span" size="small" className="mt-1">
+            <Text size="small" className="mt-1">
               {subtitle}
             </Text>
           )}

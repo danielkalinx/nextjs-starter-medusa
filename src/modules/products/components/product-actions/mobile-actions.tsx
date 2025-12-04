@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { Button, clx } from "@medusajs/ui"
+import { Button } from "@modules/common/components/button"
+import { clx } from "@lib/util/clx"
 import React, { Fragment, useMemo } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
